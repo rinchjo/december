@@ -44,25 +44,37 @@
                     <i class="fas fa-unlock-alt"></i>
                 </div>
             </div>
-            <div class="input mt-16">
-                <input id="input" class="mr-4" type="text" placeholder="Create post">
-                <input onclick="insertPost()" id="btn" type="button" value="post">
-                <div class="posts mt-6">
-                    <!-- <div id="hidden" class="w-full shadow-xl p-10 rounded-xl h-96 bg-white hidden">
-                        <div class="w-4/5 h-1/3 border-gray-300 ">
-                            asdf
-                        </div> -->
-                </div>
-            </div>
+        </div>
+
+        <div id="logout"
+            class="absolute text-white right-4 top-4 text-xl cursor-pointer hover:text-green-400 transition duration-300">
+            <i class="fas fa-sign-out-alt"></i>
         </div>
     </div>
+
+    <div class="mx-auto w-3/5 rounded-xl p-4 flex flex-col mt-56 bg-white shadow-xl">
+        <label class="font-bold mb-1" for="title">Нийтлэлийн гарчиг</label>
+        <input class="py-2 px-4 rounded-md mb-4 bg-gray-100" type="text" id="title" placeholder="Title">
+
+        <label class="font-bold mb-1" for="body">Нийтлэл</label>
+        <textarea rows="3" class="py-2 px-4 rounded-md mb-4 bg-gray-100" id="body" placeholder="Title"></textarea>
+
+        <div class="w-full flex justify-end">
+            <button id="btn"
+                class="bg-indigo-400 text-indigo-400 border-2 border-indigo-400 bg-opacity-30 font-bold transition duration-300 hover:bg-opacity-100 hover:text-white py-2 px-6 rounded-md">Нийтлэх</button>
+        </div>
     </div>
 
-
-    <div id="logout"
-        class="absolute text-white right-4 top-4 text-xl cursor-pointer hover:text-green-400 transition duration-300">
-        <i class="fas fa-sign-out-alt"></i>
-    </div>
+    <div class="mt-8" id="postContainer">
+        <div class="mx-auto w-3/5 rounded-xl p-4 mb-4 flex flex-col gap-2 bg-white shadow-xl">
+            <div class="w-full flex items-center justify-between">
+                <h1 class="font-bold">Title</h1>
+                <p class="text-xs text-gray-500">2021/12/08</p>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cupiditate, similique numquam cum libero
+                iusto minus consequuntur! Fugit commodi, nisi corporis, similique libero impedit non maxime excepturi
+                ratione dolore nulla!...</p>
+        </div>
     </div>
 
     <script>
@@ -71,41 +83,14 @@
         const deed = document.querySelector('#deed');
         const dood = document.querySelector('#dood');
         const logout = document.querySelector('#logout');
-        const btn = document.querySelector('#btn')
-        const hidden = document.querySelector('#hidden')
-        const container = document.querySelector('.posts')
-        const input = document.querySelector('#input')
+        const title = document.querySelector('#title');
+        const body = document.querySelector('#body');
+        const btn = document.querySelector('#btn');
+        const postContainer = document.querySelector('#postContainer');
 
-
-
-        let currentUser;
+        let currentUser, posts;
         let infos = [];
         let keys = [];
-        let posts = [];
-
-        function insertPost() {
-            let post = {
-                postNer: input.value,
-                id: +Math.random().toString().split(".")[1]
-            }
-            posts.push(post);
-            updatePost();
-            input.value = "";
-        }
-
-        function updatePost() {
-            container.innerHTML = "";
-            for (let i = 0; i < posts.length; i++) {
-                container.insertAdjacentHTML('afterbegin', `<div id="hidden" class="w-full shadow-xl p-10 rounded-xl mt-4 bg-white">
-                        <div class="w-4/5 h-auto border-gray-300 ">
-                            ${posts[i].postNer}
-                        </div>
-                        x
-                        </div>
-            `)
-            }
-        }
-
         window.addEventListener('load', () => {
             if (localStorage["currentUser"]) {
                 currentUser = JSON.parse(localStorage["currentUser"]);
@@ -117,8 +102,16 @@
                     keys.push(pro);
                 }
             } else {
-                location.pathname = '/login.html';
+                location.href = './login.html';
             }
+
+            if (localStorage["posts"]) {
+                posts = JSON.parse(localStorage["posts"]);
+            } else {
+                posts = [];
+            }
+
+            updateUi()
         });
 
         class Post {
@@ -127,6 +120,10 @@
                 this.body = body;
                 this.userId = userId;
                 this.id = Math.random().toString().split('.')[1];
+                this.created = {
+                    date: new Date().toLocaleDateString(),
+                    time: new Date().toLocaleTimeString()
+                }
             }
         }
 
@@ -140,8 +137,46 @@
 
         logout.addEventListener('click', () => {
             localStorage.removeItem('currentUser');
-            location.pathname = '/login.html';
+            location.href = './login.html';
         })
+
+        btn.addEventListener('click', () => {
+            if (title.value.trim() !== '' && body.value.trim() !== '') {
+                const article = new Post(title.value, body.value, currentUser.id);
+                posts.push(article)
+                localStorage.setItem('posts', JSON.stringify(posts));
+                resetForm();
+                updateUi();
+            } else {
+                alert('Өгөгдөл дутуу байна...')
+            }
+        })
+
+        function resetForm() {
+            title.value = '';
+            body.value = '';
+        }
+
+        function updateUi() {
+            postContainer.innerHTML = '';
+            const userPosts = posts.filter(post => post.userId === currentUser.id);
+
+            if (userPosts.length === 0) {
+                postContainer.innerHTML = 'Одоогоор нийтлэл алга байна...'
+            }
+
+            userPosts.forEach(post => {
+                postContainer.insertAdjacentHTML('afterbegin', `
+                    <div class="mx-auto w-3/5 rounded-xl p-4 mb-4 flex flex-col gap-2 bg-white shadow-xl">
+                    <div class="w-full flex items-center justify-between">
+                            <h1 class="font-bold">${post.title}</h1>
+                        </div>
+                        <p>${post.body.slice(0, 226)}...</p>
+                        <p class="text-xs text-right text-gray-500">${post.created.date}, ${post.created.time}</p>
+                    </div>
+                `)
+            })
+        }
     </script>
 </body>
 
