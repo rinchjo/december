@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <!-- backdrop -->
+
+    <div class="backdrop w-full h-screen bg-gray-300 bg-slate-300 fixed top-0 left-0 z-50 flex justify-center items-center 
+ hidden  transform transition duration-75">
+        <div class="absolute z-20 mx-auto w-4/5 rounded-xl p-4 mb-4 flex flex-col gap-2 bg-white shadow-xl">
+            <div class="flex border-b pb-4 items-center justify-between">
+                <div class="flex gap-3 items-center">
+                    <div class="h-10 w-10 bg-black overflow-hidden rounded-full">
+                        <img class="img w-full h-full object-cover" src="" alt="">
+                    </div>
+                    <h1 class="font-bold username text-lg">${user.fullname}</h1>
+                </div>
+                <p class="text-xs text-gray-500">${post.created.date}, ${post.created.time}</p>
+            </div>
+            <div class="w-full flex items-center justify-between">
+                <h1 class="font-bold titlePost cursor-pointer"></h1>
+            </div>
+            <p>${post.body.slice(0, 226)}...</p>
+            <div class="close cursor-pointer absolute right-1 top-1 w-7 h-7 text-black text-2xl ">
+                <i id="close" class="fas fa-times"></i>
+            </div>
+        </div>
+    </div>
+    <!-- backdrop -->
+    <div id="postContainer" class="w-3/5 mx-auto">
+
+
+        <div class="mx-auto w-full rounded-xl p-4 mb-4 flex flex-col gap-2 bg-white shadow-xl">
+            <div class="flex border-b pb-4 items-center justify-between">
+                <div class="flex gap-3 items-center">
+                    <div class="h-10 w-10 bg-black overflow-hidden rounded-full">
+                        <img class="w-full h-full object-cover" src="" alt="">
+                    </div>
+                    <h1 class="font-bold text-lg">Anna</h1>
+                </div>
+                <p class="text-xs text-gray-500">2021/12/08</p>
+            </div>
+            <div class="w-full flex items-center justify-between">
+                <h1 class="font-bold">Title</h1>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cupiditate, similique numquam cum libero
+                iusto minus consequuntur! Fugit commodi, nisi corporis, similique libero impedit non maxime excepturi
+                ratione dolore nulla!...</p>
+        </div>
+    </div>
+
+    <script>
+        const postContainer = document.querySelector('#postContainer')
+        const backdrop = document.querySelector(".backdrop")
+        const close = document.querySelector(".close")
+        const open = document.querySelector("#open")
+        const img = document.querySelector(".img")
+        const userName = document.querySelector(".username")
+        const titlePost = document.querySelector(".titlePost")
+        let users, posts;
+
+
+
+        window.addEventListener('load', () => {
+            if (localStorage["users"]) {
+                users = JSON.parse(localStorage["users"])
+            } else {
+                users = [];
+            }
+
+            if (localStorage["posts"]) {
+                posts = JSON.parse(localStorage["posts"])
+            } else {
+                posts = [];
+            }
+
+            updateUi()
+        })
+
+        window.addEventListener('load', () => {
+            posts.forEach((post, index) => {
+                const user = users.find(usr => post.userId === usr.id)
+                
+                img.src = user.avatar
+                userName.innerHTML = user.fullname
+                titlePost.innerHTML = post.title
+
+            })
+        }
+        )
+
+        function updateUi() {
+            postContainer.innerHTML = '';
+
+            if (posts.length === 0) {
+                postContainer.innerHTML = 'Одоогоор нийтлэл алга байна...'
+            }
+
+            posts.forEach(post => {
+                const user = users.find(usr => post.userId === usr.id);
+                postContainer.insertAdjacentHTML('afterbegin', `
+                    <div class="mx-auto w-full rounded-xl p-4 mb-4 flex flex-col gap-2 bg-white shadow-xl">
+                        <div class="flex border-b pb-4 items-center justify-between">
+                            <div class="flex gap-3 items-center">
+                                <div class="h-10 w-10 bg-black overflow-hidden rounded-full">
+                                    <img class="w-full h-full object-cover" src=${user.avatar} alt="">
+                                </div>
+                                <h1 class="font-bold text-lg">${user.fullname}</h1>
+                            </div>
+                            <p class="text-xs text-gray-500">${post.created.date}, ${post.created.time}</p>
+                        </div>
+                        <div class="w-full flex items-center justify-between">
+                            <h1 id="open" class="font-bold cursor-pointer">${post.title}</h1>
+                        </div>
+                        <p>${post.body.slice(0, 226)}...</p>
+                    </div>
+                `)
+            })
+        }
+
+
+        document.addEventListener('click', (e) => {
+            if (e.target.id === "open") {
+
+                backdrop.classList.remove("hidden")
+                backdrop.classList.add("visible")
+            }
+        })
+
+        close.addEventListener('click', () => {
+            backdrop.classList.remove("visible")
+            backdrop.classList.add("hidden")
+        })
+
+    </script>
+</body>
+
+</html>
