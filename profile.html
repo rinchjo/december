@@ -1,183 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Document</title>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-<body class="bg-gray-100">
-
+  <body class="bg-gray-100">
     <div class="w-full h-96 bg-gray-800 relative">
+      <div
+        class="
+          w-3/5
+          shadow-xl
+          rounded-xl
+          h-96
+          bg-white
+          absolute
+          left-1/2
+          transform
+          -translate-x-1/2
+          top-full
+          -translate-y-1/2
+        "
+      >
+        <div class="w-full h-1/3 border-b border-gray-300 relative">
+          <div
+            class="
+              absolute
+              w-36
+              h-36
+              left-1/2
+              transform
+              -translate-x-1/2
+              rounded-full
+              top-8
+              bg-white
+              p-1
+              border border-gray-300
+            "
+          >
+            <div
+              class="
+                w-full
+                overflow-hidden
+                rounded-full
+                h-full
+                bg-black
+              "
+            >
+              <img
+                class="w-full h-full object-cover"
+                id="avatar"
+                src="https://randomuser.me/api/portraits/women/29.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <div class="pt-16 w-full text-center">
+          <p id="deed" class="text-gray-600 text-lg">
+            My full name is
+          </p>
+          <h1 id="dood" class="font-bold text-4xl mt-2">Narada</h1>
+        </div>
         <div
-            class="w-3/5 shadow-xl rounded-xl h-96 bg-white absolute left-1/2 transform -translate-x-1/2 top-full -translate-y-1/2">
-            <div class="w-full h-1/3 border-b border-gray-300 relative">
-                <div
-                    class="absolute w-36 h-36 left-1/2 transform -translate-x-1/2 rounded-full top-8 bg-white p-1 border border-gray-300">
-                    <div class="w-full overflow-hidden rounded-full h-full bg-black">
-                        <img class="w-full h-full object-cover" id="avatar"
-                            src="https://randomuser.me/api/portraits/women/29.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="pt-16 w-full text-center">
-                <p id="deed" class="text-gray-600 text-lg">My full name is</p>
-                <h1 id="dood" class="font-bold text-4xl mt-2">Narada</h1>
-            </div>
-            <div class="flex mt-10 text-3xl text-gray-500 justify-evenly items-center">
-                <div id="icons" class="hover:text-indigo-400 transition duration-300 cursor-pointer">
-                    <i class="far fa-user"></i>
-                </div>
-                <div id="icons" class="hover:text-indigo-400 transition duration-300 cursor-pointer">
-                    <i class="far fa-envelope"></i>
-                </div>
-                <div id="icons" class="hover:text-indigo-400 transition duration-300 cursor-pointer">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <div id="icons" class="hover:text-indigo-400 transition duration-300 cursor-pointer">
-                    <i class="fas fa-unlock-alt"></i>
-                </div>
-            </div>
+          class="
+            flex
+            mt-10
+            text-3xl text-gray-500
+            justify-evenly
+            items-center
+          "
+        >
+          <div
+            id="icons"
+            class="
+              hover:text-indigo-400
+              transition
+              duration-300
+              cursor-pointer
+            "
+          >
+            <i class="far fa-user"></i>
+          </div>
+          <div
+            id="icons"
+            class="
+              hover:text-indigo-400
+              transition
+              duration-300
+              cursor-pointer
+            "
+          >
+            <i class="far fa-envelope"></i>
+          </div>
+          <div
+            id="icons"
+            class="
+              hover:text-indigo-400
+              transition
+              duration-300
+              cursor-pointer
+            "
+          >
+            <i class="fas fa-phone"></i>
+          </div>
+          <div
+            id="icons"
+            class="
+              hover:text-indigo-400
+              transition
+              duration-300
+              cursor-pointer
+            "
+          >
+            <i class="fas fa-unlock-alt"></i>
+          </div>
         </div>
+      </div>
 
-        <div id="logout"
-            class="absolute text-white right-4 top-4 text-xl cursor-pointer hover:text-green-400 transition duration-300">
-            <i class="fas fa-sign-out-alt"></i>
-        </div>
+      <div
+        id="logout"
+        class="
+          absolute
+          text-white
+          right-4
+          top-4
+          text-xl
+          cursor-pointer
+          hover:text-green-400
+          transition
+          duration-300
+        "
+      >
+        <i class="fas fa-sign-out-alt"></i>
+      </div>
     </div>
 
-    <div class="mx-auto w-3/5 rounded-xl p-4 flex flex-col mt-56 bg-white shadow-xl">
-        <label class="font-bold mb-1" for="title">Нийтлэлийн гарчиг</label>
-        <input class="py-2 px-4 rounded-md mb-4 bg-gray-100" type="text" id="title" placeholder="Title">
+    <div
+      class="
+        mx-auto
+        w-3/5
+        rounded-xl
+        p-4
+        flex flex-col
+        mt-56
+        bg-white
+        shadow-xl
+      "
+    >
+      <label class="font-bold mb-1" for="title"
+        >Нийтлэлийн гарчиг</label
+      >
+      <input
+        class="py-2 px-4 rounded-md mb-4 bg-gray-100"
+        type="text"
+        id="title"
+        placeholder="Title"
+      />
 
-        <label class="font-bold mb-1" for="body">Нийтлэл</label>
-        <textarea rows="3" class="py-2 px-4 rounded-md mb-4 bg-gray-100" id="body" placeholder="Title"></textarea>
+      <label class="font-bold mb-1" for="body">Нийтлэл</label>
+      <textarea
+        rows="3"
+        class="py-2 px-4 rounded-md mb-4 bg-gray-100"
+        id="body"
+        placeholder="Title"
+      ></textarea>
 
-        <div class="w-full flex justify-end">
-            <button id="btn"
-                class="bg-indigo-400 text-indigo-400 border-2 border-indigo-400 bg-opacity-30 font-bold transition duration-300 hover:bg-opacity-100 hover:text-white py-2 px-6 rounded-md">Нийтлэх</button>
-        </div>
+      <div class="w-full flex justify-end">
+        <button
+          id="btn"
+          class="
+            bg-indigo-400
+            text-indigo-400
+            border-2 border-indigo-400
+            bg-opacity-30
+            font-bold
+            transition
+            duration-300
+            hover:bg-opacity-100 hover:text-white
+            py-2
+            px-6
+            rounded-md
+          "
+        >
+          Нийтлэх
+        </button>
+      </div>
     </div>
 
     <div class="mt-8" id="postContainer">
-        <div class="mx-auto w-3/5 rounded-xl p-4 mb-4 flex flex-col gap-2 bg-white shadow-xl">
-            <div class="w-full flex items-center justify-between">
-                <h1 class="font-bold">Title</h1>
-                <p class="text-xs text-gray-500">2021/12/08</p>
-            </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cupiditate, similique numquam cum libero
-                iusto minus consequuntur! Fugit commodi, nisi corporis, similique libero impedit non maxime excepturi
-                ratione dolore nulla!...</p>
+      <div
+        class="
+          mx-auto
+          w-3/5
+          rounded-xl
+          p-4
+          mb-4
+          flex flex-col
+          gap-2
+          bg-white
+          shadow-xl
+        "
+      >
+        <div class="w-full flex items-center justify-between">
+          <h1 class="font-bold">Title</h1>
+          <p class="text-xs text-gray-500">2021/12/08</p>
         </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Quae cupiditate, similique numquam cum libero iusto minus
+          consequuntur! Fugit commodi, nisi corporis, similique libero
+          impedit non maxime excepturi ratione dolore nulla!...
+        </p>
+      </div>
     </div>
 
-    <script>
-        const avatar = document.querySelector('#avatar');
-        const icons = document.querySelectorAll('#icons');
-        const deed = document.querySelector('#deed');
-        const dood = document.querySelector('#dood');
-        const logout = document.querySelector('#logout');
-        const title = document.querySelector('#title');
-        const body = document.querySelector('#body');
-        const btn = document.querySelector('#btn');
-        const postContainer = document.querySelector('#postContainer');
+    <script type="module">
+      import { Comment, Post } from "./model.js";
+      import { logout1 } from "./controller.js";
+      import { profile } from "./controller.js";
+      const avatar = document.querySelector("#avatar");
+      const icons = document.querySelectorAll("#icons");
+      const deed = document.querySelector("#deed");
+      const dood = document.querySelector("#dood");
+      const logout = document.querySelector("#logout");
+      const title = document.querySelector("#title");
+      const body = document.querySelector("#body");
+      const btn = document.querySelector("#btn");
+      const postContainer = document.querySelector("#postContainer");
 
-        let currentUser, posts;
-        let infos = [];
-        let keys = [];
-        window.addEventListener('load', () => {
-            if (localStorage["currentUser"]) {
-                currentUser = JSON.parse(localStorage["currentUser"]);
-                avatar.src = currentUser.avatar;
-                deed.innerText = `My fullname is`;
-                dood.innerText = currentUser.fullname;
-                for (let pro in currentUser) {
-                    infos.push(currentUser[pro]);
-                    keys.push(pro);
-                }
-            } else {
-                location.href = './login.html';
-            }
-
-            if (localStorage["posts"]) {
-                posts = JSON.parse(localStorage["posts"]);
-            } else {
-                posts = [];
-            }
-
-            updateUi()
-        });
-
-        class Post {
-            constructor(title, body, userId) {
-                this.title = title;
-                this.body = body;
-                this.userId = userId;
-                this.id = Math.random().toString().split('.')[1];
-                this.created = {
-                    date: new Date().toLocaleDateString(),
-                    time: new Date().toLocaleTimeString()
-                }
-            }
+      let currentUser, posts;
+      let infos = [];
+      let keys = [];
+      window.addEventListener("load", () => {
+        if (localStorage["currentUser"]) {
+          currentUser = JSON.parse(localStorage["currentUser"]);
+          avatar.src = currentUser.avatar;
+          deed.innerText = `My fullname is`;
+          dood.innerText = currentUser.fullname;
+          for (let pro in currentUser) {
+            infos.push(currentUser[pro]);
+            keys.push(pro);
+          }
+        } else {
+          location.href = "./login.html";
         }
 
-        icons.forEach((icon, index) => {
-            icon.addEventListener('mouseover', () => {
-
-                deed.innerText = `My ${keys[index]} is`;
-                dood.innerText = infos[index];
-            })
-        });
-
-        logout.addEventListener('click', () => {
-            localStorage.removeItem('currentUser');
-            location.href = './login.html';
-        })
-
-        btn.addEventListener('click', () => {
-            if (title.value.trim() !== '' && body.value.trim() !== '') {
-                const article = new Post(title.value, body.value, currentUser.id);
-                posts.push(article)
-                localStorage.setItem('posts', JSON.stringify(posts));
-                resetForm();
-                updateUi();
-            } else {
-                alert('Өгөгдөл дутуу байна...')
-            }
-        })
-
-        function resetForm() {
-            title.value = '';
-            body.value = '';
+        if (localStorage["posts"]) {
+          posts = JSON.parse(localStorage["posts"]);
+        } else {
+          posts = [];
         }
 
-        function updateUi() {
-            postContainer.innerHTML = '';
-            const userPosts = posts.filter(post => post.userId === currentUser.id);
+        updateUi();
+      });
 
-            if (userPosts.length === 0) {
-                postContainer.innerHTML = 'Одоогоор нийтлэл алга байна...'
-            }
+      // class Post {
+      //   constructor(title, body, userId) {
+      //     this.title = title;
+      //     this.body = body;
+      //     this.userId = userId;
+      //     this.id = Math.random().toString().split(".")[1];
+      //     this.created = {
+      //       date: new Date().toLocaleDateString(),
+      //       time: new Date().toLocaleTimeString(),
+      //     };
+      //   }
+      // }
 
-            userPosts.forEach(post => {
-                postContainer.insertAdjacentHTML('afterbegin', `
+      icons.forEach((icon, index) => {
+        icon.addEventListener("mouseover", () => {
+          deed.innerText = `My ${keys[index]} is`;
+          dood.innerText = infos[index];
+        });
+      });
+
+      logout.addEventListener("click", () => {
+        logout1();
+      });
+
+      btn.addEventListener("click", () => {
+        profile(Post, title, body, currentUser, posts, updateUi);
+        // if (title.value.trim() !== "" && body.value.trim() !== "") {
+        //   const article = new Post(
+        //     title.value,
+        //     body.value,
+        //     currentUser.id
+        //   );
+        //   posts.push(article);
+        //   localStorage.setItem("posts", JSON.stringify(posts));
+        //   resetForm();
+        //   updateUi();
+        // } else {
+        //   alert("Өгөгдөл дутуу байна...");
+        // }
+      });
+
+      function resetForm() {
+        title.value = "";
+        body.value = "";
+      }
+
+      function updateUi() {
+        postContainer.innerHTML = "";
+        const userPosts = posts.filter(
+          (post) => post.userId === currentUser.id
+        );
+
+        if (userPosts.length === 0) {
+          postContainer.innerHTML = "Одоогоор нийтлэл алга байна...";
+        }
+
+        userPosts.forEach((post) => {
+          postContainer.insertAdjacentHTML(
+            "afterbegin",
+            `
                     <div class="mx-auto w-3/5 rounded-xl p-4 mb-4 flex flex-col gap-2 bg-white shadow-xl">
                     <div class="w-full flex items-center justify-between">
                             <h1 class="font-bold">${post.title}</h1>
                         </div>
                         <p>${post.body.slice(0, 226)}...</p>
-                        <p class="text-xs text-right text-gray-500">${post.created.date}, ${post.created.time}</p>
+                        <p class="text-xs text-right text-gray-500">${
+                          post.created.date
+                        }, ${post.created.time}</p>
                     </div>
-                `)
-            })
-        }
+                `
+          );
+        });
+      }
     </script>
-</body>
-
+  </body>
 </html>

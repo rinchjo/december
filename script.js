@@ -8,33 +8,33 @@ const image = document.querySelector("#image");
 var users;
 
 if (localStorage["users"]) {
-  users = JSON.parse(localStorage["users"]);
+    users = JSON.parse(localStorage["users"]);
 } else {
-  users = [];
+    users = [];
 }
 
 class User {
-  constructor(fullname, email, number, password, avatar) {
-    this.fullname = fullname;
-    this.email = email;
-    this.number = number;
-    this.password = password;
-    this.avatar = avatar;
-    this.id = Math.random().toString().split(".")[1];
-  }
+    constructor(fullname, email, number, password, avatar) {
+        this.fullname = fullname;
+        this.email = email;
+        this.number = number;
+        this.password = password;
+        this.avatar = avatar;
+        this.id = Math.random().toString().split(".")[1];
+    }
 }
 
 register.addEventListener("click", function (e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  const user = new User(
-    fullname.value,
-    email.value,
-    number.value,
-    password.value,
-    image.value
-  );
+    const user = new User(
+        fullname.value,
+        email.value,
+        number.value,
+        password.value,
+        image.value
+    );
 
-  users.push(user);
-  localStorage.setItem("users", JSON.stringify(users));
+    users.push(user);
+    localStorage.setItem("users", JSON.stringify(users));
 });

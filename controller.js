@@ -1,52 +1,53 @@
-// export function burtgeh(e, users, User, obj) {
-//   e.preventDefault();
+export function burtgeh(e, users, User, obj) {
+    e.preventDefault();
 
-//   const user = new User(
-//     obj.fullname,
-//     obj.email,
-//     obj.number,
-//     obj.password,
-//     obj.image
-//   );
+    const user = new User(obj.fullname, obj.email, obj.number, obj.password, obj.image);
 
-//   users.push(user);
-//   localStorage.setItem("users", JSON.stringify(users));
+    users.push(user);
+    localStorage.setItem('users', JSON.stringify(users));
+}
+
+export function writeComment(currentUser, comment, Comment, currentPost, updateUi, comments) {
+    if (!currentUser) {
+        alert('Сэтгэгдэл үлдээхийн тулд нэвтрэх шаардлагатай...')
+    } else {
+        if (!comment.value) {
+            alert('Хоосон байна.')
+        } else {
+            const setgegdel = new Comment(currentUser.id, currentPost.id, comment.value);
+
+            comments.push(setgegdel);
+
+            localStorage.setItem('comments', JSON.stringify(comments));
+
+            comment.value = '';
+            updateUi()
+        }
+    }
+}
+// export function resetForm(comment1) {
+//     comment1.value = "";
 // }
-const comment1 = document.querySelector("#comment1");
 
-import { Comment } from "./model";
-export function val() {
-  if (comment1.value.trim() !== "") {
-    let newComment = new Comment(users.id, currentPost.id, comment1.value);
-    comments.push(newComment);
-    localStorage.setItem("comments", JSON.stringify(comments));
-    resetForm();
-  }
-}
-export function resetForm() {
-  comment1.value = "";
+export function logout1() {
+    localStorage.removeItem("currentUser");
+    location.href = "./login.html"
 }
 
-export function updateUi() {
-  const postOwner = users.find((user) => user.id === currentPost.userId);
-  newsContainer.insertAdjacentHTML(
-    "afterbegin",
-    `
-          <div class="mx-auto w-3/5 bg-white p-4 rounded-xl shadow-xl">
-              <div class="flex gap-3 mb-4 items-center">
-                  <div class="h-10 w-10 bg-black overflow-hidden rounded-full">
-                      <img class="w-full h-full object-cover" src=${postOwner.avatar} alt="">
-                  </div>
-                  <h1 class="font-bold text-lg">${postOwner.fullname}</h1>
-              </div>
-              <div class="w-full flex-col flex my-1">
-                  <h1 id="article" class="font-bold">${currentPost.title}</h1>
-              </div>
-              <p class='text-justify'>
-                  ${currentPost.body}
-              </p>
-              <p class="text-xs text-right text-gray-500">${currentPost.created.date}, ${currentPost.created.time}</p>
-          </div>
-      `
-  );
+export function profile(Post, title, body, currentUser, posts, updateUi) {
+
+    if (title.value.trim() !== "" && body.value.trim() !== "") {
+        const article = new Post(
+            title.value,
+            body.value,
+            currentUser.id
+        );
+        posts.push(article);
+        localStorage.setItem("posts", JSON.stringify(posts));
+        // resetForm();
+        updateUi();
+    } else {
+        alert("Өгөгдөл дутуу байна...");
+    }
 }
+
