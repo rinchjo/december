@@ -39,35 +39,36 @@
 // Request => {headers: {} , body: {} , url: 'https://www.facebook.com'}
 // Response
 
-// server client tal ruu data ilgeehdee JSON helbereer ilgeedeg. 
+// server client tal ruu data ilgeehdee JSON helbereer ilgeedeg.
 // JSON - JS Object Notation
 // neg torliin object
-const container = document.querySelector(".container")
-fetch('https://jsonplaceholder.typicode.com/users', {
-    method: 'get'
+const container = document.querySelector(".container");
+fetch("https://jsonplaceholder.typicode.com/users", {
+  method: "get",
 })
-    .then(res => {
-        return res.json()
-    })
-    .then(data => {
-        data.forEach(user => {
-            // container.innerHTML = ''
-            console.log(user)
-            container.insertAdjacentHTML("beforeend", `
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+    data.forEach((user) => {
+      console.log(user);
+      container.insertAdjacentHTML(
+        "beforeend",
+        `
           <h4 class='user' id=${user.id} >${user.name}</h4>
         
-
-            `)
-        })
-    })
-    .catch(err => console.log(err))
-document.addEventListener('click', e => {
-    if (e.target.classList.contains('user')) {
-        localStorage.setItem('userId', e.target.id)
-        console.log(e.target.id)
-        location.href = './user.html'
-    }
-})
+            `
+      );
+    });
+  })
+  .catch((err) => console.log(err));
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("user")) {
+    localStorage.setItem("userId", e.target.id);
+    console.log(e.target.id);
+    location.href = "./user.html";
+  }
+});
 
 // Request =>
 // 1. Get - server-s data huleej avah
